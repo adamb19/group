@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=imagemaker
+comment1.params=foo
+comment1.target=void\ main(java.lang.String[])
+comment2.params=pixel
+comment2.target=void\ printpixels(int)
+comment3.params=image
+comment3.target=void\ gothroughimage(java.awt.image.BufferedImage)
+comment4.params=
+comment4.target=imagemaker()
+numComments=5
