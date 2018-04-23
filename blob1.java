@@ -1,46 +1,10 @@
-// Daniel Shiffman
-// http://codingtra.in
-// http://patreon.com/codingtrain
-// Code for: https://youtu.be/ce-2l2wRqO8
-
-import processing.video.*;
-
-Capture video;
-
 color trackColor; 
 float threshold = 20;
 float distThreshold = 75;
 
 ArrayList<Blob> blobs = new ArrayList<Blob>();
 
-void setup() {
-  size(640, 360);
-  String[] cameras = Capture.list();
-  printArray(cameras);
-  video = new Capture(this, cameras[3]);
-  video.start();
-  trackColor = color(255, 0, 0);
-}
-
-void captureEvent(Capture video) {
-  video.read();
-}
-
-void keyPressed() {
-  if (key == 'a') {
-    distThreshold++;
-  } else if (key == 'z') {
-    distThreshold--;
-  }
-  println(distThreshold);
-}
-
 void draw() {
-  video.loadPixels();
-  image(video, 0, 0);
-
-  blobs.clear();
-
   //threshold = map(mouseX, 0, width, 0, 100);
   threshold = 80;
 
@@ -66,7 +30,6 @@ void draw() {
           if (b.isNear(x, y)) {
             b.add(x, y);
             found = true;
-            break;
           }
         }
 
@@ -95,10 +58,4 @@ float distSq(float x1, float y1, float x2, float y2) {
 float distSq(float x1, float y1, float z1, float x2, float y2, float z2) {
   float d = (x2-x1)*(x2-x1) + (y2-y1)*(y2-y1) +(z2-z1)*(z2-z1);
   return d;
-}
-
-void mousePressed() {
-  // Save color where the mouse is clicked in trackColor variable
-  int loc = mouseX + mouseY*video.width;
-  trackColor = video.pixels[loc];
 }
